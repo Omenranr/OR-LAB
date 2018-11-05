@@ -11,7 +11,9 @@ function Sommet(x, y, rad) {
 		ellipse(this.x, this.y, 2*this.rad, 2*this.rad);
 	}
 	this.update = function(mouseX, mouseY) {
-		this.x = mouseX;
-		this.y = mouseY;
+		if(mouseX < width && mouseY < height) {
+			this.x = mouseX;
+		    this.y = mouseY;
+		}
 	}
 }
