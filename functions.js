@@ -26,8 +26,10 @@ function movesom(sommets) {
 			somsel.select = 0;
 		}
 	}
-	somsel.moved = true;
-	somsel.update(mouseX, mouseY);
+	if(mouseX < width && mouseY < height) {
+		somsel.moved = true;
+		somsel.update(mouseX, mouseY);
+	}
 }
 
 function addsom(sommets) {
