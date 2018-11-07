@@ -15,7 +15,12 @@ function creatar(arretes) {
 		selsom[0].select = 0;
 		selsom[1].select = 0;
 		selsom = [];
+		// console.log(arretes);
 	}
+}
+
+function creatboucle(arretes) {
+	
 }
 
 function movesom(sommets) {
@@ -44,16 +49,16 @@ function addsom(sommets) {
 		{
 			sommet = new Sommet(mouseX, mouseY, rad);
 			sommets.push(sommet);
-			console.log(sommet.select);
+			// console.log(sommet.select);
 		}
 	} else {
 		if(mouseX < width - rad && mouseY < height - rad) {
 			sommet = new Sommet(mouseX, mouseY, rad);
 		    sommets.push(sommet);
-		    console.log(sommet.select);
+		    // console.log(sommet.select);
 		}
 	}
-	console.log(sommets);
+	// console.log(sommets);
 }
 
 function selectsom(sommets) {
@@ -66,7 +71,6 @@ function selectsom(sommets) {
 				csom.col = 0;
 				csom.select = 1;
 				selsom.push(csom);
-				console.log(selsom);
 			}
 			else if(csom.select == -1) {
 				csom.select = 0;
@@ -75,9 +79,8 @@ function selectsom(sommets) {
 				csom.select = 0;
 				csom.col = 255;
 				selsom.pop();
-				console.log(selsom);
 			}
-			console.log(csom.select);
+			// console.log(csom.select);
 		}
 	}
 }
@@ -92,10 +95,35 @@ function deselectsom(sommets) {
 				csom.select = 0;
 				csom.col = 255;
 				selsom.pop();
-				console.log(selsom);
 				csom.moved = false;
 			}
-			console.log(csom.select);
+			// console.log(csom.select);
 		}
 	}
 }
+
+function deletesom(sommets, arretes) {
+	for(let i = 0; i < sommets.length; i++) {
+		if (sommets[i].select == 1) {
+			som = sommets[i];
+			for(let m = 0; m < arretes.length; m++) {
+				arr = arretes[m];
+				if ((arr.xi == som.x && arr.yi == som.y) || (arr.xf == som.x && arr.yf == som.y)) {
+					arretes.splice(m, 1);
+					m--;
+				}
+			}
+			sommets.splice(i, 1);
+			selsom.splice(0, 1);
+		}
+	}
+}
+// supression de sommet
+// orientation
+// poids sommets et arretes
+// curves, boucles
+// enregistrer le graphe
+// input d'un graphe
+//supression d'aretes
+// coloration
+

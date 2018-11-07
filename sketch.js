@@ -11,18 +11,19 @@ function setup() {
 
 function draw() {
 	background(100);
-	show(sommets);
-	show(arretes);
 	creatar(arretes);
+	for(let i = 0; i < arretes.length; i++) {
+		arretes[i].update();
+	}
+	show(arretes);
+	show(sommets);
 }
 
 function mousePressed() {
 	addsom(sommets);
 	selectsom(sommets);
 }
-function mouseReleased() {
-	console.log("mouse released");
-}
+
 function doubleClicked() {
 }
 
@@ -32,7 +33,8 @@ function mouseDragged() {
 }
 
 function keyPressed() {
-	// x = mouseX;
-	// y = mouseY;
+	if(keyCode === 83 && sommets != []) {
+		deletesom(sommets, arretes);
+	}
 }
 

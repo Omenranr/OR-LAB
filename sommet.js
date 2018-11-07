@@ -13,7 +13,7 @@ function Sommet(x, y, rad) {
 		return false;
 	}
 	this.show = function() {
-		fill(this.col);
+		fill(this.col, this.col-100, this.col);
 		ellipse(this.x, this.y, 2*this.rad, 2*this.rad);
 	}
 	this.update = function(mouseX, mouseY) {
