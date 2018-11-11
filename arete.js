@@ -1,4 +1,5 @@
 function Arrete(somin, somfi, poids) {
+	this.attr = [somin.attr, somfi.attr].join(";");
 	this.xi = somin.x;
 	this.yi = somin.y;
 	this.xf = somfi.x;
@@ -17,7 +18,7 @@ function Arrete(somin, somfi, poids) {
 		push();
 		translate((this.xi + this.xf) / 2, (this.yi + this.yf) / 2);
 		rotate(atan2(this.yf - this.yi, this.xf - this.xi));
-		text(nfc(this.poids, 1), 0, -5);
+		text(this.poids, 0, -5);
 		pop();
 	}
 }

@@ -1,4 +1,5 @@
-function Sommet(x, y, rad) {
+function Sommet(x, y, rad, numero) {
+	this.attr = numero;
 	this.x = x;
 	this.y = y;
 	this.rad = 	rad;
@@ -15,6 +16,11 @@ function Sommet(x, y, rad) {
 	this.show = function() {
 		fill(this.col, this.col-100, this.col);
 		ellipse(this.x, this.y, 2*this.rad, 2*this.rad);
+		push();
+		translate(this.x, this.y);
+		fill(255);
+		text(this.attr, -2, 2);
+		pop();
 	}
 	this.update = function(mouseX, mouseY) {
 		if(this.incan()) {

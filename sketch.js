@@ -1,12 +1,15 @@
 let sommets = [];
 let selsom = [];
 let arretes = [];
-let rad = 15;
+let rad = 10;
 let lmin = 2;
-let poids = 10;
+let numero = 0;
+
 function setup() {
 	createCanvas(600, 600);
-	background(100);
+	createFileInput();
+	let saveButton = select("#saveGraph");
+	// saveButton.mousePressed();
 }
 
 function draw() {
@@ -35,6 +38,12 @@ function mouseDragged() {
 function keyPressed() {
 	if(keyCode === 83 && sommets != []) {
 		deletesom(sommets, arretes);
+	}
+	if(keyCode === UP_ARROW) {
+		reset();
+	}
+	if(keyCode === DOWN_ARROW) {
+		saveGraphTxt(["sommets", "aretes"], [sommets, arretes])
 	}
 }
 

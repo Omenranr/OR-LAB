@@ -8,7 +8,7 @@ function show(tab) {
 
 function creatar(arretes) {
 	if (selsom.length >= 2) {
-		arrete = new Arrete(selsom[0], selsom[1], poids);
+		arrete = new Arrete(selsom[0], selsom[1], "");
 		arretes.push(arrete);
 		selsom[0].col = 255;
 		selsom[1].col = 255;
@@ -23,16 +23,36 @@ function creatboucle(arretes) {
 	
 }
 
+// function handleFiles(files) {
+//     // Check for the various File API support.
+//     if (window.FileReader) {
+//     // FileReader are supported.
+//     } else {
+//         alert('FileReader are not supported in this browser.');
+//     }
+// }
+
+// function getAsText(fileToRead) {
+// 	var reader = new FileReader();
+// 	// Read file into memory as UTF-8      
+// 	reader.readAsText(fileToRead);
+//     // Handle errors load
+//     reader.onload = loadHandler;
+//     reader.onerror = errorHandler;
+// }
+
 function movesom(sommets) {
-	for(let i = 0; i < sommets.length; i++) {
-		dms = dist(sommets[i].x, sommets[i].y, mouseX, mouseY);
-		if(dms < rad) {
-			somsel = sommets[i];
-			somsel.select = 0;
+	if(sommets != []) {
+		for(let i = 0; i < sommets.length; i++) {
+			dms = dist(sommets[i].x, sommets[i].y, mouseX, mouseY);
+			if(dms < rad) {
+				somsel = sommets[i];
+				somsel.select = 0;
+			}
 		}
+		somsel.moved = true;
+		somsel.update(mouseX, mouseY);
 	}
-	somsel.moved = true;
-	somsel.update(mouseX, mouseY);
 }
 
 function addsom(sommets) {
@@ -45,16 +65,18 @@ function addsom(sommets) {
 				cf = 0;
 			}
 		}
-		if (cf && mouseX < width && mouseY < height) 
+		if (cf && mouseX < width && mouseY < height && mouseX > rad/2 && mouseY > rad/2) 
 		{
-			sommet = new Sommet(mouseX, mouseY, rad);
+			sommet = new Sommet(mouseX, mouseY, rad, numero);
 			sommets.push(sommet);
+			numero++;
 			// console.log(sommet.select);
 		}
 	} else {
 		if(mouseX < width - rad && mouseY < height - rad) {
-			sommet = new Sommet(mouseX, mouseY, rad);
+			sommet = new Sommet(mouseX, mouseY, rad, numero);
 		    sommets.push(sommet);
+		    numero++;
 		    // console.log(sommet.select);
 		}
 	}
@@ -115,8 +137,62 @@ function deletesom(sommets, arretes) {
 			}
 			sommets.splice(i, 1);
 			selsom.splice(0, 1);
+			numero--;
 		}
 	}
+}
+function reset() {
+	sommets = [];
+	arretes = [];
+}
+
+// function saveGraphCSV(columns, rows) {
+// 	let graph = new p5.Table();
+// 	let msize = 0;
+// 	let attrArr = [];
+// 	graph.columns = columns;
+// 	for(let i = 0; i < rows.length; i++) {
+// 		if (rows[i].length > msize) {
+// 			msize = rows[i].length;
+// 		}
+// 	}
+// 	for(let i = 0; i < rows.length; i++) {
+// 		let newRow = graph.addRow();
+// 		for(let j = 0; j < msize; j++) {
+// 			if (rows[i][j].attr == null) {
+// 				attrArr.push("");
+// 			} else {
+// 				attrArr.push(rows[i][j].attr);
+// 			}
+// 		}
+// 		for(let j = 0; j < msize; j++) {
+// 			newRow.setString(columns[i], attrArr[j]);
+// 		}
+// 		attrArr = [];
+
+// 	}
+// 	// console.log(graph);
+// 	saveTable(graph, "graph", "csv");
+// }
+
+function saveGraphTxt(nomClasses, classes) {
+	let txttab = [];
+	for(let i = 0; i < classes.length; i++) {
+		let lignetab = [];
+		lignetab.push(nomClasses[i]);
+		for(let j = 0; j < classes[i].length; j++) {
+			lignetab.push(classes[i][j].attr);
+		}
+		ligne = lignetab.join(";");
+		txttab.push(ligne);
+		ligne = [];
+	}
+	console.log(txttab);
+	saveStrings(txttab, "graph.txt");
+}
+
+function loadGraph() {
+
 }
 // supression de sommet
 // orientation
