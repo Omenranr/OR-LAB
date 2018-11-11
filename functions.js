@@ -179,15 +179,17 @@ function saveGraphTxt(nomClasses, classes) {
 	let txttab = [];
 	for(let i = 0; i < classes.length; i++) {
 		let lignetab = [];
+		let ligne = "";
 		lignetab.push(nomClasses[i]);
 		for(let j = 0; j < classes[i].length; j++) {
 			lignetab.push(classes[i][j].attr);
 		}
 		ligne = lignetab.join(";");
-		txttab.push(ligne);
-		ligne = [];
+		txttab.push(ligne + ";\n");
+		lignetab = [];
+		ligne = "";
 	}
-	console.log(txttab);
+	// console.log(txttab);
 	saveStrings(txttab, "graph.txt");
 }
 
