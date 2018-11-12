@@ -8,7 +8,7 @@ function show(tab) {
 
 function creatar(arretes) {
 	if (selsom.length >= 2) {
-		arrete = new Arrete(selsom[0], selsom[1], "");
+		arrete = new Arrete(selsom[0], selsom[1], "", oriente);
 		arretes.push(arrete);
 		selsom[0].col = 255;
 		selsom[1].col = 255;
@@ -144,6 +144,7 @@ function deletesom(sommets, arretes) {
 function reset() {
 	sommets = [];
 	arretes = [];
+	numero = 0;
 }
 
 // function saveGraphCSV(columns, rows) {
@@ -174,8 +175,7 @@ function reset() {
 // 	// console.log(graph);
 // 	saveTable(graph, "graph", "csv");
 // }
-
-function saveGraphTxt(nomClasses, classes) {
+function saveGraphTxt() {
 	let txttab = [];
 	for(let i = 0; i < classes.length; i++) {
 		let lignetab = [];
@@ -189,8 +189,8 @@ function saveGraphTxt(nomClasses, classes) {
 		lignetab = [];
 		ligne = "";
 	}
-	// console.log(txttab);
-	saveStrings(txttab, "graph.txt");
+	console.log(txttab);
+	saveStrings(txttab, "graph", "csv");
 }
 
 function loadGraph() {
