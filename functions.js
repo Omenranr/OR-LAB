@@ -193,9 +193,11 @@ function saveGraphTxt() {
 	saveStrings(txttab, "graph", "csv");
 }
 
-function loadGraph() {
-
+function loadGraph(file) {
+	loadedGraph = loadStrings(file.data);
+	console.log(loadedGraph);
 }
+
 // supression de sommet
 // orientation
 // poids sommets et arretes
