@@ -4,20 +4,21 @@ function Arrete(somin, somfi, oriente, pondere, col, nature, input) {
 	this.yi = somin.y;
 	this.xf = somfi.x;
 	this.yf = somfi.y;
-	this.poids = "";
+	this.poids = "20";
 	this.select = false;
 	this.col = col;
 	this.nature = nature;
 	this.input = input;
 	this.sp = false;
+	this.inputstyle = "width:".concat(this.poids.length*8, "px");
 	this.update = function() {
+		this.inputstyle = "width:".concat(this.poids.length*8, "px");
 		this.xi = somin.x;
 		this.yi = somin.y;
 		this.xf = somfi.x;
 		this.yf = somfi.y;
-		// this.input.style('rotate', degrees(atan2(abs(this.yf - this.yi), abs(this.xf - this.xi))));
-		this.input.style('width:20px');
-		this.input.position((this.xi + this.xf) / 2, (this.yi + this.yf) / 2);
+		this.input.style(this.inputstyle);
+		this.input.position((this.xi + this.xf)/2, (this.yi + this.yf)/2+20);
 		this.poids = input.value();
 	}
 
@@ -34,10 +35,10 @@ function Arrete(somin, somfi, oriente, pondere, col, nature, input) {
 		line(this.xi, this.yi, this.xf, this.yf);
 		if(oriente) {
 			push();
-			translate((this.xi + this.xf) / 2, (this.yi + this.yf) / 2);
+			translate(this.xf, this.yf);
 			rotate(atan2(this.yf - this.yi, this.xf - this.xi));
 			fill(255, 0, 0);
-			triangle(-5, -5, 0, 0, -5, 5);
+			triangle(-rad - 5, -5, -rad, 0, -rad - 5, 5);
 			pop();
 		}
 	}

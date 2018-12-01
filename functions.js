@@ -75,7 +75,7 @@ function addsom(sommets) {
 		for (let i = 0; i < arretes.length; i++) {
 			push();
 			d = dist(mouseX, mouseY, (arretes[i].xi + arretes[i].xf) / 2, (arretes[i].yi + arretes[i].yf) / 2);
-			if( d < 4 * rad) {
+			if( d < 2 * rad) {
 				sp = 1;
 			}
 			pop();
