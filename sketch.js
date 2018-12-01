@@ -1,3 +1,4 @@
+let colorar = [255, 0, 0];
 let sommets = [];
 let selsom = [];
 let arretes = [];
@@ -7,15 +8,17 @@ let numero = 0;
 let nomClasses = ["sommets", "aretes"];
 let classes = [sommets, arretes];
 let oriente = false;
-let input;
+let pondere = false;
 let orientecheck;
+let pondcheck;
 let saveButton;
 let loadedGraph;
 let space;
 function setup() {
 	space = createCanvas(600, 600);
-	background(100);
+	background(255);
 	orientecheck = createCheckbox();
+	pondcheck = createCheckbox();
 	resetSpace = select("#resetSpace");
 	resetSpace.mousePressed(reset);
 	saveButton = select("#saveGraph");
@@ -28,7 +31,11 @@ function draw() {
 	space.drop(loadGraph);
 	classes = [sommets, arretes];
 	oriente = orientecheck.checked();
-	background(100);
+	pondere = pondcheck.checked();
+	background(255);
+	noFill();
+	stroke(0);
+	rect(0, 0, width-1, height-1);
 	creatar(arretes);
 	for(let i = 0; i < arretes.length; i++) {
 		arretes[i].update();
@@ -82,7 +89,7 @@ function attrToObj() {
 				somfi = sommets[j];
 			}
 		}
-		arretes.push(new Arrete(somin, somfi, "", oriente));
+		arretes.push(new Arrete(somin, somfi, oriente, pondere, colorar, "arsimple", input));
 	}
 }
 

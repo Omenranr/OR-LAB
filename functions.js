@@ -8,7 +8,8 @@ function show(tab) {
 
 function creatar(arretes) {
 	if (selsom.length >= 2) {
-		arrete = new Arrete(selsom[0], selsom[1], "", oriente);
+		input = createInput();
+		arrete = new Arrete(selsom[0], selsom[1], oriente, pondere, colorar, "arsimple", input);
 		arretes.push(arrete);
 		selsom[0].col = 255;
 		selsom[1].col = 255;
@@ -19,9 +20,14 @@ function creatar(arretes) {
 	}
 }
 
-function creatboucle(arretes) {
+function selectar(arretes) {
 	
 }
+
+function deselectar(arretes) {
+
+}
+
 
 // function handleFiles(files) {
 //     // Check for the various File API support.
@@ -57,6 +63,7 @@ function movesom(sommets) {
 
 function addsom(sommets) {
 	cf = 1;
+	sp = 0;
 	if (sommets != []) {
 		for (let i = 0; i < sommets.length; i++) {
 			xs = sommets[i].x;
@@ -65,7 +72,15 @@ function addsom(sommets) {
 				cf = 0;
 			}
 		}
-		if (cf && mouseX < width && mouseY < height && mouseX > rad/2 && mouseY > rad/2) 
+		for (let i = 0; i < arretes.length; i++) {
+			push();
+			d = dist(mouseX, mouseY, (arretes[i].xi + arretes[i].xf) / 2, (arretes[i].yi + arretes[i].yf) / 2);
+			if( d < 4 * rad) {
+				sp = 1;
+			}
+			pop();
+		}
+		if (!sp && cf && mouseX < width && mouseY < height && mouseX > rad/2 && mouseY > rad/2) 
 		{
 			sommet = new Sommet(mouseX, mouseY, rad, numero);
 			sommets.push(sommet);
@@ -142,6 +157,9 @@ function deletesom(sommets, arretes) {
 	}
 }
 function reset() {
+	for(let i = 0; i < arretes.length; i++) {
+		arretes[i].input.remove();
+	}
 	sommets = [];
 	arretes = [];
 	numero = 0;

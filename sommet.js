@@ -14,11 +14,14 @@ function Sommet(x, y, rad, numero) {
 		return false;
 	}
 	this.show = function() {
-		fill(this.col, this.col-100, this.col);
+		fill(255);
+		stroke(0, 0, 255);
+		strokeWeight(1);
 		ellipse(this.x, this.y, 2*this.rad, 2*this.rad);
 		push();
 		translate(this.x, this.y);
-		fill(255);
+		fill(this.col);
+		stroke(0);
 		text(this.attr, -2, 2);
 		pop();
 	}
