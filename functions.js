@@ -126,6 +126,7 @@ function deleteNode(nodes, edges) {
 			for(let m = 0; m < edges.length; m++) {
 				arr = edges[m]
 				if ((arr.xi == thenode.x && arr.yi == thenode.y) || (arr.xf == thenode.x && arr.yf == thenode.y)) {
+					edges[m].input.remove()
 					edges.splice(m, 1)
 					m--
 				}
